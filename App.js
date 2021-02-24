@@ -1,25 +1,48 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 import Home from "./screens/Home";
 import Saved from "./screens/Saved";
 
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-function App() {
+function MyTabs() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
+      <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: "#039be5",
+        }}
+      >
+        <Tab.Screen
           name="Home"
           component={Home}
-          options={{ title: "Cat Photos" }}
+          options={{
+            tabBarLabel: "Home",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" color={color} size={size} />
+            ),
+          }}
         />
-        <Stack.Screen name="Details" component={Saved} />
-      </Stack.Navigator>
+        <Tab.Screen
+          name="Saved"
+          component={Saved}
+          options={{
+            tabBarLabel: "Saved",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="content-save"
+                color={color}
+                size={size}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
 
-export default App;
+export default MyTabs;
