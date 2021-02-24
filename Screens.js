@@ -29,7 +29,7 @@ function Screens() {
           name="Saved"
           component={Saved}
           options={{
-            tabBarLabel: "Saved",
+            tabBarLabel: "Adopted",
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="content-save"

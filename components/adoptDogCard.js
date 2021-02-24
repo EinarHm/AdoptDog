@@ -9,7 +9,7 @@ import {
 import React from "react";
 function adoptDogCard(props) {
   return (
-    <View style={styles.item}>
+    <View style={styles.item} key={props.image}>
       <Image
         style={styles.image}
         source={{
