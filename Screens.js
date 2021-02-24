@@ -12,7 +12,7 @@ function Screens() {
     <NavigationContainer>
       <Tab.Navigator
         tabBarOptions={{
-          activeTintColor: "#039be5",
+          activeTintColor: "#f35764",
         }}
       >
         <Tab.Screen

@@ -1,4 +1,13 @@
-import { Text, View, StyleSheet, Image, ActivityIndicator } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+  Alert,
+  ScrollView,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 
 function HomeScreen() {
@@ -6,7 +15,7 @@ function HomeScreen() {
 
   useEffect(() => {
     const fetchData = async () => {
-      let response = await fetch("https://dog.ceo/api/breeds/image/random/8");
+      let response = await fetch("https://dog.ceo/api/breeds/image/random/20");
       let responseJson = await response.json();
       setData({ img: responseJson.message, isLoading: false });
     };
@@ -18,21 +27,28 @@ function HomeScreen() {
       <ActivityIndicator />
     </View>
   ) : (
-    <View style={styles.container}>
-      <View style={styles.gridContainer}>
-        {data.img.map((image) => (
-          <View style={styles.item}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: image,
-              }}
-            />
-            <Text>Guardar</Text>
-          </View>
-        ))}
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.gridContainer}>
+          {data.img.map((image) => (
+            <View style={styles.item}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: image,
+                }}
+              />
+              <TouchableOpacity
+                style={styles.adoptButton}
+                onPress={() => Alert.alert("Thank you for adopting this dog")}
+              >
+                <Text style={styles.adoptButtonText}>ADOPT</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -48,13 +64,23 @@ const styles = StyleSheet.create({
   },
   item: {
     width: "50%",
-    height: 150,
-
+    height: 180,
     alignItems: "center",
+    marginBottom: 5,
   },
   image: {
     width: "100%",
-    height: 120,
+    height: 150,
+  },
+  adoptButton: {
+    width: "50%",
+    marginTop: 4,
+    borderRadius: 30,
+    backgroundColor: "#f35764",
+    alignItems: "center",
+  },
+  adoptButtonText: {
+    color: "#F9F9F9",
   },
 });
 
